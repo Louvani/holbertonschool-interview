@@ -4,7 +4,7 @@
 """
 
 
-def minopt(n):
+def minOperations(n):
     if n <= 1:
         return 0
     accrued = 1  # characters in the text file start always in 1
