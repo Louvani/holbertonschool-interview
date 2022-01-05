@@ -5,7 +5,7 @@
 
 
 def minOperations(n):
-    if n <= 1:
+    if not isinstance(n, int) or n <= 1:
         return 0
     accrued = 1  # characters in the text file start always in 1
     clip = 0  # number of copied characters
