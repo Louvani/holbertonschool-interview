@@ -1,39 +1,43 @@
 #!/usr/bin/python3
 """
-0. Minimum Operations
+0. Minimum opt
 """
+
 
 def minOperations(n):
     if n <= 1:
         return 0
-    accrued = 1 # characters in the text file start always in 1
-    clipBoard = 0 # number of copied characters
-    operations = 0
-    operations = minimumSpanning(n, accrued, clipBoard, "CopyPaste", operations)
-    return operations
+    accrued = 1  # characters in the text file start always in 1
+    clip = 0  # number of copied characters
+    opt = 0
+    opt = minimumSpanning(n, accrued, clip, "CopyPaste", opt)
+    return opt
 
-def minimumSpanning(n, accrued, clipBoard, action, operations):
+
+def minimumSpanning(n, accrued, clipBoard, action, opt):
     """Will search the shorter way """
 
     if accrued == n:
-        return operations
+        return opt
     elif accrued > n:
         return 0
 
     if action == "CopyPaste":
         clipBoard = accrued
         accrued += clipBoard
-        operations += 2
+        opt += 2
     elif action == "Paste":
         accrued += clipBoard
-        operations += 1
+        opt += 1
 
-    copySide = minimumSpanning(n, accrued, clipBoard, "CopyPaste", operations)
-    pasteSide = minimumSpanning(n, accrued, clipBoard, "Paste", operations)
+    copy = minimumSpanning(n, accrued, clipBoard, "CopyPaste", opt)
+    paste = minimumSpanning(n, accrued, clipBoard, "Paste", opt)
 
-    if (copySide != 0 and pasteSide != 0 and copySide <= pasteSide) or copySide != 0 and pasteSide == 0:
-        return copySide
-    elif (copySide != 0 and pasteSide != 0 and pasteSide <= copySide) or copySide == 0 and pasteSide != 0:
-        return pasteSide
+    if copy != 0 and paste == 0 or (
+         copy != 0 and paste != 0 and copy <= paste):
+        return copy
+    elif copy == 0 and paste != 0 or (
+         copy != 0 and paste != 0 and paste <= copy):
+        return paste
     else:
         return 0
