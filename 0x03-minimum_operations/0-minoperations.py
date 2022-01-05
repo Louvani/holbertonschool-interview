@@ -8,14 +8,26 @@ def minOperations(n):
     if not isinstance(n, int) or n <= 1:
         return 0
     accrued = 1  # characters in the text file start always in 1
-    clip = 0  # number of copied characters
-    opt = 0
-    opt = minimumSpanning(n, accrued, clip, "CopyPaste", opt)
-    return opt
+    count = 0
+    while (accrued < n):
+        rest = n - accrued
+
+        if (rest % accrued == 0):
+            clipBoard = accrued
+            accrued += clipBoard
+            count += 2
+        else:
+            accrued += clipBoard
+            count = count + 1
+
+    return (count)
 
 
 def minimumSpanning(n, accrued, clipBoard, action, opt):
-    """Will search the shorter way """
+    """
+    will go through the options to find the shortest
+    The proble is that consume to much space, seem to be an infinite recursion
+    """
 
     if accrued == n:
         return opt
