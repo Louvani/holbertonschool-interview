@@ -8,32 +8,32 @@ def minOperations(n):
         return 0
     accrued = 1 # characters in the text file start always in 1
     clipBoard = 0 # number of copied characters
-    operations = dijkstra(n, accrued, clipBoard, "CopyPaste")
-    if operations == None:
-        return 0
+    operations = 0
+    operations = minimumSpanning(n, accrued, clipBoard, "CopyPaste", operations)
     return operations
 
-def dijkstra(n, acrued, clipBoard, action):
-    copySide = 0
-    pasteSide = 0
+def minimumSpanning(n, accrued, clipBoard, action, operations):
+    """Will search the shorter way """
 
-    if acrued == n:
+    if accrued == n:
+        return operations
+    elif accrued > n:
         return 0
-    elif acrued > n:
-        return 100 # still looking for another way
 
     if action == "CopyPaste":
-        clipBoard = acrued
-        acrued += clipBoard
-        copySide = 2 + dijkstra(n, acrued, clipBoard, "CopyPaste")
-        pasteSide = 2 + dijkstra(n, acrued, clipBoard, "Paste")
+        clipBoard = accrued
+        accrued += clipBoard
+        operations += 2
     elif action == "Paste":
-        acrued += clipBoard
-        copySide = 1 + dijkstra(n, acrued, clipBoard, "CopyPaste")
-        pasteSide = 1 + dijkstra(n, acrued, clipBoard, "Paste")
+        accrued += clipBoard
+        operations += 1
 
-    if copySide < pasteSide:
+    copySide = minimumSpanning(n, accrued, clipBoard, "CopyPaste", operations)
+    pasteSide = minimumSpanning(n, accrued, clipBoard, "Paste", operations)
+
+    if (copySide != 0 and pasteSide != 0 and copySide <= pasteSide) or copySide != 0 and pasteSide == 0:
         return copySide
-    else:
+    elif (copySide != 0 and pasteSide != 0 and pasteSide <= copySide) or copySide == 0 and pasteSide != 0:
         return pasteSide
-
+    else:
+        return 0
