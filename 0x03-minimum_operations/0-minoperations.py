@@ -4,7 +4,7 @@
 """
 
 
-def minOperations(n):
+def minopt(n):
     if n <= 1:
         return 0
     accrued = 1  # characters in the text file start always in 1
@@ -33,11 +33,11 @@ def minimumSpanning(n, accrued, clipBoard, action, opt):
     copy = minimumSpanning(n, accrued, clipBoard, "CopyPaste", opt)
     paste = minimumSpanning(n, accrued, clipBoard, "Paste", opt)
 
-    if copy != 0 and paste == 0 or (
-         copy != 0 and paste != 0 and copy <= paste):
+    if (copy != 0 and paste != 0 and copy <= paste) or (
+         copy != 0 and paste == 0):
         return copy
-    elif copy == 0 and paste != 0 or (
-         copy != 0 and paste != 0 and paste <= copy):
+    elif (copy != 0 and paste != 0 and paste <= copy) or (
+         copy == 0 and paste != 0):
         return paste
     else:
         return 0
