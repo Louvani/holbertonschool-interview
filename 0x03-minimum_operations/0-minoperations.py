@@ -11,7 +11,7 @@ def minOperations(n):
     count = 0
     while (accrued < n):
         rest = n - accrued
-
+        print(rest % accrued)
         if (rest % accrued == 0):
             clipBoard = accrued
             accrued += clipBoard

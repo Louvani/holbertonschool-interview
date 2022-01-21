@@ -5,15 +5,83 @@ Main file for testing
 
 minOperations = __import__('0-minoperations').minOperations
 
-n = 100
-print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
-
-n = 12
-print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
-
 n = 9
-print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
+print("Min number of operations to reach {} characters: {}".format(n, minOperations(n)))
 
-n = 10
-print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
+# print("="*30)
 
+# n = 12
+# print("Min number of operations to reach {} characters: {}".format(n, minOperations(n)))
+
+# print("="*30)
+
+# n = 7
+# print("Expected: 7")
+# print("Min number of operations to reach {} characters: {}".format(n, minOperations(n)))
+
+# print("="*30)
+
+# n = 12
+# print("Expected: 7")
+# print("Min number of operations to reach {} characters: {}".format(n, minOperations(n)))
+
+# print("="*30)
+
+# n = 30
+# print("Expected: 10")
+# print("Min number of operations to reach {} characters: {}".format(n, minOperations(n)))
+
+# print("="*30)
+
+# n = 9
+# print("Expected: 6")
+# print("Min number of operations to reach {} characters: {}".format(n, minOperations(n)))
+
+# print("="*30)
+
+# n = 0
+# print("Expected: 0")
+# print("Min number of operations to reach {} characters: {}".format(n, minOperations(n)))
+
+# print("="*30)
+
+# n = -1
+# print("Expected: 0")
+# print("Min number of operations to reach {} characters: {}".format(n, minOperations(n)))
+
+# print("="*30)
+
+# n = 3.2
+# print("Expected: 0")
+# print("Min number of operations to reach {} characters: {}".format(n, minOperations(n)))
+
+# print("="*30)
+# n = 9
+# print("Expected: 6")
+# print("Min number of operations to reach {} characters: {}".format(n, minOperations(n)))
+
+# print("="*30)
+# n = 1
+# print("Expected: 0")
+# print("Min number of operations to reach {} characters: {}".format(n, minOperations(n)))
+
+# print("="*30)
+# n = 2
+# print("Expected: 2")
+# print("Min number of operations to reach {} characters: {}".format(n, minOperations(n)))
+
+
+# print("="*30)
+# n = []
+# print("Expected: 0")
+# print("Min number of operations to reach {} characters: {}".format(n, minOperations(n)))
+
+# print("="*30)
+# n = ()
+# print("Expected: 0")
+# print("Min number of operations to reach {} characters: {}".format(n, minOperations(n)))
+
+# print("="*30)
+# n = 99999999999999999999
+# print("Expected: 4223966")
+# print("Min number of operations to reach {} characters: {}".format(n, minOperations(n)))
