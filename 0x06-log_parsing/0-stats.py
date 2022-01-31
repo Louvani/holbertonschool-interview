@@ -1,39 +1,31 @@
 #!/usr/bin/python3
 """stats"""
-import sys
+from sys import stdin
 
-def helper(statCount, fileSize):
-    print("File size: {}".format(fileSize))
-    for key in sorted(statCount.keys()):
-        if statCount[key] == 0:
-            continue
-        print("{}: {}".format(key, statCount[key]))
+codes = {'200': 0, '301': 0, '400': 0, '401': 0,
+         '403': 0, '404': 0, '405': 0, '500': 0}
+size = 0
 
-def log_parsing():
-    """Log parsing"""
-    c = size = 0
-    counter = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0,
-               "404": 0, "405": 0, "500": 0}
+def print_info():
+    """print needed info"""
+    print("File size: {}".format(size))
+    for key, val in sorted(codes.items()):
+        if val > 0:
+            print("{}: {}".format(key, val))
 
+if __name__ == '__main__':
     try:
-        for line in sys.stdin:
-            c += 1
-            split = line.split(" ")
+        for i, line in enumerate(stdin, 1):
             try:
-                status = split[-2]
-                size += int(split[-1])
-                if status in counter:
-                    counter[status] += 1
-            except Exception:
+                info = line.split()
+                size += int(info[-1])
+                if info[-2] in codes.keys():
+                    codes[info[-2]] += 1
+            except:
                 pass
-            if c % 10 == 0:
-                helper(counter, size)
-        else:
-            helper(counter, size)
-    except (KeyboardInterrupt, SystemExit):
-        helper(counter, size)
+            if not i % 10:
+                print_info()
+    except KeyboardInterrupt:
+        print_info()
         raise
-
-
-if __name__ == "__main__":
-    log_parsing()
+    print_info()
