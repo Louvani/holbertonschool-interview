@@ -6,12 +6,14 @@ codes = {'200': 0, '301': 0, '400': 0, '401': 0,
          '403': 0, '404': 0, '405': 0, '500': 0}
 size = 0
 
+
 def print_info():
     """print needed info"""
     print("File size: {}".format(size))
     for key, val in sorted(codes.items()):
         if val > 0:
             print("{}: {}".format(key, val))
+
 
 if __name__ == '__main__':
     try:
@@ -21,7 +23,7 @@ if __name__ == '__main__':
                 size += int(info[-1])
                 if info[-2] in codes.keys():
                     codes[info[-2]] += 1
-            except:
+            except Exception:
                 pass
             if not i % 10:
                 print_info()
