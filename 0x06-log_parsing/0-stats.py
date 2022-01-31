@@ -2,6 +2,12 @@
 """stats"""
 import sys
 
+def helper(statCount, fileSize):
+    print("File size: {}".format(fileSize))
+    for key in sorted(statCount.keys()):
+        if statCount[key] == 0:
+            continue
+        print("{}: {}".format(key, statCount[key]))
 
 def log_parsing():
     """Log parsing"""
@@ -28,12 +34,6 @@ def log_parsing():
         helper(counter, size)
         raise
 
-def helper(statCount, fileSize):
-    print("File size: {}".format(fileSize))
-    for key in sorted(statCount.keys()):
-        if statCount[key] == 0:
-            continue
-        print("{}: {}".format(key, statCount[key]))
 
 if __name__ == "__main__":
     log_parsing()
