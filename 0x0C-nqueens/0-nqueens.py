@@ -21,6 +21,16 @@ def input(args):
         exit(1)
 
 
+def solve(number):
+    """ Find all the posibilities if exists"""
+    board = [[0 for i in range(number)]for i in range(number)]
+
+    if not N_queen(board, 0, number):
+        return False
+
+    return True
+
+
 def print_board(board):
     """ print_board """
     new_list = []
@@ -71,16 +81,6 @@ def N_queen(board, col, number):
             board[i][col] = 0
 
     return res
-
-
-def solve(number):
-    """ Find all the posibilities if exists"""
-    board = [[0 for i in range(number)]for i in range(number)]
-
-    if not N_queen(board, 0, number):
-        return False
-
-    return True
 
 
 if __name__ == "__main__":
