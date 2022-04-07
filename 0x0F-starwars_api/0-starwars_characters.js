@@ -9,10 +9,9 @@ function getName (characters, idx) {
   if (characters.length === idx) {
     return;
   }
-
   request(characters[idx], function (err, res, body) {
     if (err) {
-      console.log(err);
+      console.error(err);
     }
     const actor = JSON.parse(body).name;
     console.log(actor);
@@ -21,10 +20,9 @@ function getName (characters, idx) {
 }
 
 request(url, function (err, res, body) {
-  if (err){
-    console.log(err);
+  if (err) {
+    console.error(err);
   }
-
   const characters = JSON.parse(body).characters;
   getName(characters, 0);
 });
