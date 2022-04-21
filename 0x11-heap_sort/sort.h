@@ -1,5 +1,5 @@
 #ifndef SORT_H
-#define sort_h
+#define SORT_H
 
 
 #include <stdlib.h>
@@ -10,4 +10,4 @@ void heap_sort(int *array, size_t size);
 void sift_down(int *array, size_t start, size_t end, size_t size);
 void heapify(int *array, size_t size);
 
-#endif /* LISTS_H */
+#endif /* SORT_H */
