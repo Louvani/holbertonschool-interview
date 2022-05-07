@@ -14,7 +14,8 @@ def generate_dicts(word_list):
     return (count, duplicate)
 
 
-def count_words(subreddit, word_list, after="", count={}, duplicate={}, init=0):
+def count_words(
+  subreddit, word_list, after="", count={}, duplicate={}, init=0):
     """ A recursive function that queries the Reddit API,
        parses the title of all hot articles,
        and prints a sorted count of given keywords """
