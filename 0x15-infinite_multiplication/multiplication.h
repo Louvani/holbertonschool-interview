@@ -8,6 +8,6 @@
 
 int _putchar(char c);
 int _isdigit(char *n);
-int _strlen(const char *s)
+int _strlen(const char *s);
 
 #endif /* _MULTIPLICATION_H_ */
