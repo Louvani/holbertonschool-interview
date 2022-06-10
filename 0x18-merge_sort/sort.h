@@ -5,8 +5,9 @@
 #include <stdlib.h>
 
 void merge_sort(int *array, size_t size);
-void merge_sort_res(int *array, int left, int right);
-void merge(int *array, int left, int middle, int right);
+void sort(int *arr, int *l, int *r, int start, int mid, int end);
+void merge(int *array, int start, int mid, int end);
+void divide_array(int *array, int start, int end);
 void print_array(const int *array, size_t size);
 
 #endif /* SORT_H_ */

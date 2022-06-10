@@ -8,76 +8,114 @@
 
 void merge_sort(int *array, size_t size)
 {
-
-	merge_sort_res(array, 0, size - 1);
+	if (array && size >= 2)
+	{
+		divide_array(array, 0, size - 1);
+	}
 }
 
 /**
- * merge - merge to start the serach of the array
- *@array: the array to sort
- *@left: the idx of the left size of the array
- *@middle: the midle of the aray
- *@right: the idx of the right size of the array
+ * divide_array - Split array into subarrays
+ * @array: Pointer to array of integers
+ * @start: First index of left subarray
+ * @end: Last index of right subarray
+ *
+ * Return: None
  */
-void merge(int *array, int left, int middle, int right)
+void divide_array(int *array, int start, int end)
 {
-	int i = left, j = middle + 1, k = 0;
-	int *temp;
+	int mid = (start + end - 1) / 2;
 
-	temp = (int *)malloc(right - (left + 1));
-
-	while (i <= middle && j <= right)
+	if (start < end)
 	{
-		if (array[i] <= array[j])
+		divide_array(array, start, mid);
+		divide_array(array, mid + 1, end);
+
+		merge(array, start, mid, end);
+	}
+}
+
+/**
+ * merge - Merge subarrays
+ * @array: Pointer to array of integers
+ * @start: First index of left subarray
+ * @mid: Last index of left subarray
+ * @end: Last index of right subarray
+ * Return: None
+ */
+void merge(int *array, int start, int mid, int end)
+{
+	int left_iter, right_iter;
+	int left_size, right_size;
+
+	left_size = mid - start + 1;
+	right_size = end - mid;
+
+	int left[left_size];
+	int right[right_size];
+
+	for (left_iter = 0; left_iter < left_size; left_iter++)
+		left[left_iter] = array[start + left_iter];
+	for (right_iter = 0; right_iter < right_size; right_iter++)
+		right[right_iter] = array[mid + right_iter + 1];
+
+	printf("Merging...\n[left]: ");
+	print_array(left, left_size);
+	printf("[right]: ");
+	print_array(right, right_size);
+
+	sort(array, left, right, start, mid, end);
+
+	printf("[Done]: ");
+	print_array(&array[start], left_size + right_size);
+}
+
+/**
+ * sort - Sort
+ * @arr: Pointer to array of integers
+ * @l: Pointer to left subarray
+ * @r: Pointer to right subarray
+ * @start: First index of left subarray
+ * @mid: Last index of left subarray
+ * @end: Last index of right subarray
+ *
+ * Return: None
+ */
+void sort(int *arr, int *l, int *r, int start, int mid, int end)
+{
+	int left_iter, right_iter, array_iter;
+	int left_size = mid - start + 1;
+	int right_size = end - mid;
+
+	left_iter = right_iter = 0;
+	array_iter = start;
+
+	while (left_iter < left_size && right_iter < right_size)
+	{
+		if (l[left_iter] < r[right_iter])
 		{
-			temp[k] = array[i];
-			k += 1;
-			i += 1;
+			arr[array_iter] = l[left_iter];
+			left_iter++;
 		}
 		else
 		{
-			temp[k] = array[j];
-			k += 1;
-			j += 1;
+			arr[array_iter] = r[right_iter];
+			right_iter++;
 		}
+		array_iter++;
 	}
-	while (i <= middle)
+
+	while (left_iter < left_size)
 	{
-		temp[k] = array[i];
-		k += 1;
-		i += 1;
+		arr[array_iter] = l[left_iter];
+		left_iter++;
+		array_iter++;
 	}
-	while (j <= right)
+
+	while (right_iter < right_size)
 	{
-		temp[k] = array[j];
-		k += 1;
-		j += 1;
-	}
-	for (i = left; i <= right; i += 1)
-	{
-		array[i] = temp[i - left];
-	}
-	free(temp);
-}
-
-/**
- * merge_sort_res - res
- *@array: the array to do the sorting
- *@left: the idx of the left
- *@right: the idx of the right
- */
-
-void merge_sort_res(int *array, int left, int right)
-{
-	int middle = 0;
-
-	if (left < right)
-	{
-		middle = left + (right - left) / 2;
-
-		merge_sort_res(array, left, middle);
-		merge_sort_res(array, middle + 1, right);
-
-		merge(array, left, middle, right);
+		arr[array_iter] = r[right_iter];
+		right_iter++;
+		array_iter++;
 	}
 }
