@@ -15,6 +15,40 @@ void merge_sort(int *array, size_t size)
 }
 
 /**
+ * merge - Merge subarrays
+ * @array: Pointer to array of integers
+ * @start: First index of left subarray
+ * @mid: Last index of left subarray
+ * @end: Last index of right subarray
+ * Return: None
+ */
+void merge(int *array, int start, int mid, int end)
+{
+	int left_iter, right_iter;
+	int left_size = mid - start + 1;
+	int right_size = end - mid;
+
+#pragma GCC diagnostic ignored "-Wvla"
+	int left[left_size];
+	int right[right_size];
+
+	for (left_iter = 0; left_iter < left_size; left_iter++)
+		left[left_iter] = array[start + left_iter];
+	for (right_iter = 0; right_iter < right_size; right_iter++)
+		right[right_iter] = array[mid + right_iter + 1];
+
+	printf("Merging...\n[left]: ");
+	print_array(left, left_size);
+	printf("[right]: ");
+	print_array(right, right_size);
+
+	sort(array, left, right, start, mid, end);
+
+	printf("[Done]: ");
+	print_array(&array[start], left_size + right_size);
+}
+
+/**
  * divide_array - Split array into subarrays
  * @array: Pointer to array of integers
  * @start: First index of left subarray
@@ -35,40 +69,6 @@ void divide_array(int *array, int start, int end)
 	}
 }
 
-/**
- * merge - Merge subarrays
- * @array: Pointer to array of integers
- * @start: First index of left subarray
- * @mid: Last index of left subarray
- * @end: Last index of right subarray
- * Return: None
- */
-void merge(int *array, int start, int mid, int end)
-{
-	int left_iter, right_iter;
-	int left_size, right_size;
-
-	left_size = mid - start + 1;
-	right_size = end - mid;
-
-	int left[left_size];
-	int right[right_size];
-
-	for (left_iter = 0; left_iter < left_size; left_iter++)
-		left[left_iter] = array[start + left_iter];
-	for (right_iter = 0; right_iter < right_size; right_iter++)
-		right[right_iter] = array[mid + right_iter + 1];
-
-	printf("Merging...\n[left]: ");
-	print_array(left, left_size);
-	printf("[right]: ");
-	print_array(right, right_size);
-
-	sort(array, left, right, start, mid, end);
-
-	printf("[Done]: ");
-	print_array(&array[start], left_size + right_size);
-}
 
 /**
  * sort - Sort
