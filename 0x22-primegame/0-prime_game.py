@@ -8,6 +8,8 @@ def isWinner(x, nums):
     """
         Function to finde the winer in the prime game
     """
+    if (x < 1):
+        return None
     number = 0
     for round in range(x):
         number ^= nums[round % len(nums)]
